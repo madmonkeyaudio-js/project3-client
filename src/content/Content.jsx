@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 import Signup from './pages/Signup'
+import HolidayPlan from './pages/HolidayPlan'
 
 const Content = props => {
   return (
@@ -21,6 +22,7 @@ const Content = props => {
       <Route path="/signup" render={
         () => <Signup user={props.user} updateUser={props.updateUser} />
       } />
+      <Route path="/holidayPlan" component={HolidayPlan} />
     </div>
   )
 }

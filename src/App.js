@@ -23,7 +23,6 @@ class App extends React.Component {
   getUser = () => {
     // See if there's a token
     let token = localStorage.getItem('mernToken')
-
     // If there's a token, try to use it to get the user info
     if (token) {
       console.log('token was', token)

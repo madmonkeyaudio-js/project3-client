@@ -22,8 +22,12 @@ class Nav extends Component {
             <Link to="/profile">Profile</Link>
           </li>
           <li>
+            <Link to="/holidayPlan">Holiday Planner</Link>
+          </li>
+          <li>
             <a href="/" onClick={this.handleLogout}>Logout</a>
           </li>
+         
         </span>
       )
     }
@@ -41,14 +45,16 @@ class Nav extends Component {
     }
 
     return (
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          {links}
-        </ul>
-      </nav>
+      <div className="App-header">
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            {links}
+          </ul>
+        </nav>
+      </div>
     )
   }
 }
