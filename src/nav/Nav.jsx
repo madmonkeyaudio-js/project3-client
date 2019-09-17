@@ -17,18 +17,19 @@ class Nav extends Component {
     // If the user is logged in, show profile page and logout links
     if (this.props.user) {
       links = (
-        <span>
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li>
-            <Link to="/holidayPlan">Holiday Planner</Link>
-          </li>
-          <li>
-            <a href="/" onClick={this.handleLogout}>Logout</a>
-          </li>
-         
-        </span>
+       
+          <span className="navigation-bar">
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+            <li>
+              <Link to="/holidayPlan">Holiday Planner</Link>
+            </li>
+            <li>
+              <a href="/" onClick={this.handleLogout}>Logout</a>
+            </li>  
+          </span>
+      
       )
     }
     else {

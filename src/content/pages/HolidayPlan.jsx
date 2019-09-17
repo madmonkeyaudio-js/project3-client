@@ -3,25 +3,22 @@ import axios from 'axios';
 import SERVER_URL from '../../constants';
 
  class HolidayPlan extends Component {
-
+   
     state = {
-        results: []
+        results: [],
+        value: '',
+        filteredResults: []
     }
 
-    apiResponseData = (e) => {
-        e.preventDefault();
+    componentDidMount(){
+        this.apiResponseData();
+    }
+ 
+    apiResponseData = () => {
         axios.get(`${SERVER_URL}/holidayPlan`)
         .then(response => {
-            console.log(response.data.response.holidays[0].name)
-            let api = response.data.response.holidays.map((holiday, idx) => {
-                return(
-                    <div key={idx}>
-                       <p>{holiday.name}</p> 
-                    </div>
-                )
-            });
             this.setState({
-                results: api
+                results: response.data.response.holidays
             })
         }) 
         .catch(err => {
@@ -29,41 +26,53 @@ import SERVER_URL from '../../constants';
         })
     }
 
-    searchPlace = () => {
-        
+    search = (e) => {
+        let search = e.target.value;
+        let displayResults = this.state.results.filter((holiday) => {
+           if(holiday.name.toLowerCase().includes(search.toLowerCase())){
+               return true;
+           } else {
+               return false;
+           }
+        })
+        this.setState({
+            value: e.target.value,
+            filteredResults: displayResults
+        })
     }
-   
-   
 
     render() {
+       
+        let displayResults = this.state.filteredResults.map((result, idx) => {
+            return (
+                <li key={idx}>
+                    {result.name}
+                    {result.country}
+                </li>
+            )
+        })
         return (
             <div>
-                My plans
-                <input type="text" onChange={this.searchPlace}/>
-                <input type="submit" value="See the api stuff" onClick={this.apiResponseData}/>
-                <hr/>
+                 <form action="" onSubmit={this.searchPlace}>
 
-                <div>{this.state.results}</div>
-               
-                {/* <form action="" >
+                    <label htmlFor="name">name</label>
+                    <input id="name" type="text" placeholder="name..." name="name" onChange={this.search}/>
+
                     <label htmlFor="date">date</label>
                     <input id="date" type="text" placeholder="date..." name="date"/>
 
                     <label htmlFor="place">place</label>
-                    <input id="place" type="text" placeholder="place..." name="place"/>
+                    <input id="place" type="text" placeholder="place..." name="place" />
 
-                    <label htmlFor="name">name</label>
-                    <input id="name" type="text" placeholder="name..." name="name"/>
-
-                    <label htmlFor="description">description</label>
-                    <input id="description" type="text" placeholder="description..." name="description"/>
-
-                    <input type="submit"/>
-
+                    <input type="submit"/>   
+                </form>
+                
+                <hr/>
                     <div>
-                        <h1>Showcase all the places</h1>
+                        <h2>Display Holidays</h2>
                     </div>
-                </form> */}
+                
+                <div>{displayResults}</div>
             </div>
         )
     }
