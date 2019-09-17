@@ -59,7 +59,7 @@ import SERVER_URL from '../../constants';
                     <input id="name" type="text" placeholder="name..." name="name" onChange={this.search}/>
 
                     <label htmlFor="date">date</label>
-                    <input id="date" type="text" placeholder="date..." name="date"/>
+                    <input id="date" type="date" placeholder="date..." name="date"/>
 
                     <label htmlFor="place">place</label>
                     <input id="place" type="text" placeholder="place..." name="place" />
