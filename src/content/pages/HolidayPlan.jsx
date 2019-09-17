@@ -4,22 +4,46 @@ import SERVER_URL from '../../constants';
 
  class HolidayPlan extends Component {
 
+    state = {
+        results: []
+    }
+
     apiResponseData = (e) => {
         e.preventDefault();
-        axios.get(`${SERVER_URL}/profile`)
+        axios.get(`${SERVER_URL}/holidayPlan`)
         .then(response => {
-            console.log(response.data)
+            console.log(response.data.response.holidays[0].name)
+            let api = response.data.response.holidays.map((holiday, idx) => {
+                return(
+                    <div key={idx}>
+                       <p>{holiday.name}</p> 
+                    </div>
+                )
+            });
+            this.setState({
+                results: api
+            })
         }) 
         .catch(err => {
             console.log(err);
         })
     }
+
+    searchPlace = () => {
+        
+    }
+   
+   
+
     render() {
         return (
             <div>
                 My plans
-                <input type="submit" value="See the api stuff" onSubmit={this.apiResponseData}/>
+                <input type="text" onChange={this.searchPlace}/>
+                <input type="submit" value="See the api stuff" onClick={this.apiResponseData}/>
                 <hr/>
+
+                <div>{this.state.results}</div>
                
                 {/* <form action="" >
                     <label htmlFor="date">date</label>
