@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import SERVER_URL from '../../constants';
 
+
  class HolidayPlan extends Component {
    
     state = {
@@ -64,9 +65,11 @@ import SERVER_URL from '../../constants';
                     <label htmlFor="place">place</label>
                     <input id="place" type="text" placeholder="place..." name="place" />
 
+                    <input type="text" placeholder="todo..." name="todo"/>
+
                     <input type="submit"/>   
                 </form>
-                
+             
                 <hr/>
                     <div>
                         <h2>Display Holidays</h2>

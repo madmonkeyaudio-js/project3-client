@@ -14,7 +14,6 @@ class App extends React.Component {
   state = {
     user: null
   }
-
   componentDidMount() {
     // Go look for a token
     this.getUser()
@@ -25,12 +24,12 @@ class App extends React.Component {
     let token = localStorage.getItem('mernToken')
     // If there's a token, try to use it to get the user info
     if (token) {
-      console.log('token was', token)
+      //console.log('token was', token)
       axios.get(`${SERVER_URL}/auth/current/user`, {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       .then(response => {
-        console.log('Success', response)
+        //console.log('Success', response)
         this.setState({ user: response.data.user })
       })
       .catch(err => {

@@ -2,21 +2,36 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import SERVER_URL from '../../constants';
+import TodoMainComp from '../todos/TodoMainComp';
 
 class Profile extends React.Component {
-
+  state = {
+    email: '',
+  }
   componentDidMount(){
     this.getProfile();
   }
 
   getProfile = () => {
-    axios.get(`${SERVER_URL}/profile`)
-    .then(results => {
-      console.log(results);
-    }) 
-    .catch(err => {
-      console.log(err);
-    })
+    // See if there's a token
+    let token = localStorage.getItem('mernToken')
+    if (token) {
+      axios.get(`${SERVER_URL}/profile`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+      .then(response => {
+       console.log(response)
+       this.setState({
+         email: response.data.email,
+       })
+      })
+      .catch(err => {
+        console.log('Error with token', err)
+      })
+    }
+    else {
+      console.log('nothing');
+    }
   }
 
 render(){
@@ -26,6 +41,8 @@ render(){
     return (
       <div>
         <h2>{this.props.user.firstname}'s Profile</h2>
+        <p>{this.state.email}</p>
+        <TodoMainComp />
       </div>
     )
   }
