@@ -42,6 +42,24 @@ import SERVER_URL from '../../constants';
         })
     }
 
+    postForm = () => {
+    let token = localStorage.getItem('mernToken')
+    if (token) {
+        axios.post(`${SERVER_URL}`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        })
+        .then(response => {
+        console.log(response)
+        })
+        .catch(err => {
+            console.log('Error with token', err)
+        })
+    }
+    else {
+        console.log('nothing');
+        }
+    }
+
     render() {
        
         let displayResults = this.state.filteredResults.map((result, idx) => {
@@ -54,7 +72,7 @@ import SERVER_URL from '../../constants';
         })
         return (
             <div>
-                 <form action="" onSubmit={this.searchPlace}>
+                 <form action="" onSubmit={this.postForm}>
 
                     <label htmlFor="name">name</label>
                     <input id="name" type="text" placeholder="name..." name="name" onChange={this.search}/>
@@ -64,8 +82,6 @@ import SERVER_URL from '../../constants';
 
                     <label htmlFor="place">place</label>
                     <input id="place" type="text" placeholder="place..." name="place" />
-
-                    <input type="text" placeholder="todo..." name="todo"/>
 
                     <input type="submit"/>   
                 </form>

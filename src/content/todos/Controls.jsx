@@ -11,32 +11,41 @@ class Controls extends Component {
         e.preventDefault();
         if (this.state.newItemText) {
             this.props.add(this.state.newItemText)
-
-            axios.post(`${SERVER_URL}/profile`)
-            .then(
-            this.setState({ 
-                newItemText: '' 
-            })
-            )
-            .catch(err => {
-                console.log(err)
-            })
+            let token = localStorage.getItem('mernToken')
+                if (token) {
+                axios.post(`${SERVER_URL}/profile`, {
+                    headers: { 'Authorization': `Bearer ${token}` }    
+                }, {result: this.state.newItemText}
+                )
+                .then(response => {
+                    console.log(response)
+                })
+                .then(
+                this.setState({ 
+                    newItemText: '' 
+                }))
+                .catch(err => {
+                    console.log(err)
+                })
+            }
         }
     }
     render() {
         return (
             <div> 
                 <h3>Add something you'd like to do</h3>
-                <Form onSubmit={this.handleSubmit}> 
+                <Form onSubmit={this.handleSubmit} > 
                     <Row>
                         <Col sm="8">
                             <FormGroup>
-                                <Input type="text" 
+                                <Input  type="text" 
+                                        name="name"
                                         placeholder="What would you like to add?" 
                                         value={this.state.newItemText}
                                         onChange={(e) => {
                                             this.setState({ newItemText: e.target.value})
                                         }}/>
+                                       
                             </FormGroup>
                         </Col>
                         <Col sm="2">
