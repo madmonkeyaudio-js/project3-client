@@ -2,6 +2,8 @@ import React from 'react';
 import { ListGroupItem, Badge, Col, Row } from 'reactstrap';
 
 const TodoListItem = props => {
+
+    
     return (
         <ListGroupItem>
             <Row>

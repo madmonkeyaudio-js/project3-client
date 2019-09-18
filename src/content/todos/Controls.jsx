@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { Button, Col, Form, FormGroup, Input, Row } from 'reactstrap';
+import axios from 'axios';
+import SERVER_URL from '../../constants'
 
 class Controls extends Component {
     state = {
@@ -9,8 +11,15 @@ class Controls extends Component {
         e.preventDefault();
         if (this.state.newItemText) {
             this.props.add(this.state.newItemText)
+
+            axios.post(`${SERVER_URL}/profile`)
+            .then(
             this.setState({ 
                 newItemText: '' 
+            })
+            )
+            .catch(err => {
+                console.log(err)
             })
         }
     }
@@ -22,10 +31,12 @@ class Controls extends Component {
                     <Row>
                         <Col sm="8">
                             <FormGroup>
-                                <Input type="text" placeholder="What would you like to add?" value={this.state.newItemText}
-                                onChange={(e) => {
-                                    this.setState({ newItemText: e.target.value})
-                                }}/>
+                                <Input type="text" 
+                                        placeholder="What would you like to add?" 
+                                        value={this.state.newItemText}
+                                        onChange={(e) => {
+                                            this.setState({ newItemText: e.target.value})
+                                        }}/>
                             </FormGroup>
                         </Col>
                         <Col sm="2">

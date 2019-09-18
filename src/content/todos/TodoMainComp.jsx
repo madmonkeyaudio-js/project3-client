@@ -44,7 +44,6 @@ render() {
       </div>
     );
   }
-    
 }
 
 export default TodoMainComp;
