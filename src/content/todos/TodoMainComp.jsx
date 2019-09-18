@@ -9,6 +9,7 @@ class TodoMainComp extends React.Component {
 state = {
   items: []
 }
+
 add = (newItemText) => {
   this.setState({
     items: [...this.state.items, { text: newItemText, finished: false}]
@@ -36,7 +37,6 @@ delete = (indexToDelete) => {
 render() {
   return (
     <div>
-       
         <Container>
           <Controls clear={this.clear} add={this.add}/>
           <TodoList items={this.state.items} delete={this.delete} markDone={this.markDone}/>

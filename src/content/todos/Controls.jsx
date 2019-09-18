@@ -22,9 +22,7 @@ class Controls extends Component {
                     <Row>
                         <Col sm="8">
                             <FormGroup>
-                                <Input type="text" 
-                                placeholder="What would you like to add?" 
-                                value={this.state.newItemText}
+                                <Input type="text" placeholder="What would you like to add?" value={this.state.newItemText}
                                 onChange={(e) => {
                                     this.setState({ newItemText: e.target.value})
                                 }}/>
