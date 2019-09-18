@@ -2,7 +2,7 @@ import React from 'react';
 import {Container} from 'reactstrap';
 
 //Custom Components
-import Controls from './Controls';
+import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 
 
@@ -39,7 +39,7 @@ render() {
   return (
     <div>
         <Container>
-          <Controls clear={this.clear} add={this.add}/>
+          <TodoForm clear={this.clear} add={this.add}/>
           <TodoList items={this.state.items} delete={this.delete} markDone={this.markDone}/>
      
         </Container>

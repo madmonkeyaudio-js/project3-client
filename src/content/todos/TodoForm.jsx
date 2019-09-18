@@ -3,7 +3,7 @@ import { Button, Col, Form, FormGroup, Input, Row } from 'reactstrap';
 import axios from 'axios';
 import SERVER_URL from '../../constants'
 
-class Controls extends Component {
+class TodoForm extends Component {
     state = {
         newItemText: ''
     }
@@ -51,7 +51,7 @@ class Controls extends Component {
                             </FormGroup>
                         </Col>
                         <Col sm="2">
-                            <Button color="primary" type="submit" add={this.props.add}> Add </Button>
+                            <Button color="primary" type="submit" onClick={this.props.add}> Add </Button>
                         </Col>
                         <Col sm="2">
                             <Button color="danger" onClick={this.props.clear}> Clear</Button>
@@ -63,4 +63,4 @@ class Controls extends Component {
     }
 }
 
-export default Controls;
+export default TodoForm;

@@ -1,48 +1,57 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import axios from 'axios'
-import SERVER_URL from '../../constants';
 import TodoMainComp from '../todos/TodoMainComp';
+import axios from 'axios';
+import SERVER_URL from '../../constants'
+
 
 class Profile extends React.Component {
+ 
   state = {
-    email: '',
-  }
-  componentDidMount(){
-    this.getProfile();
+    user: null
   }
 
-  getProfile = () => {
-    // See if there's a token
-    let token = localStorage.getItem('mernToken')
-    if (token) {
-      axios.get(`${SERVER_URL}/profile`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      })
-      .then(response => {
-       console.log(response)
-       this.setState({
-         email: response.data.email,
-       })
-      })
-      .catch(err => {
-        console.log('Error with token', err)
-      })
-    }
-    else {
-      console.log('nothing');
-    }
-  }
+componentDidMount(){
+  let token = localStorage.getItem('mernToken')
+    axios.get(`${SERVER_URL}/profile`, 
+    {
+    headers: { 'Authorization': `Bearer ${token}` }
+    })
+    .then(response => {
+      console.log("hjihihihi:,",response.data)
+     this.setState({
+       user: response.data
+     })
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+}
 
 render(){
-    if (!this.props.user) {
-      return <Redirect to="/" />
-    }
+  if (!this.props.user) {
+    return <Redirect to="/" />
+  }
+
+  let displayResults = '';
+  if(this.state.user){
+    displayResults = this.state.user.holidays.map((holiday) => {
+      return (
+        <li>
+          {holiday.name}
+        </li>
+      )
+    })
+  }
+   
     return (
       <div>
         <h2>{this.props.user.firstname}'s Profile</h2>
-        <p>{this.state.email}</p>
+        <p>{this.props.user.firstname}</p>
         <TodoMainComp />
+        <div>{displayResults}</div>
+       
       </div>
     )
   }

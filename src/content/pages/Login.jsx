@@ -17,7 +17,6 @@ class Login extends React.Component {
     .then(response => {
       // Store Token in localStorage
       localStorage.setItem('mernToken', response.data.token)
-
       // Update App with user info
       this.props.updateUser()
     })
