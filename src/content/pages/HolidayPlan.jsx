@@ -44,10 +44,17 @@ import SERVER_URL from '../../constants';
 
     postForm = () => {
     let token = localStorage.getItem('mernToken')
+    console.log('This is supposed to be the token', token);
     if (token) {
-        axios.post(`${SERVER_URL}`, {
+        axios.post(`${SERVER_URL}/profile`, 
+        {
+            name: this.req.body.name,
+            date: this.req.body.date,
+            place: this.req.body.place
+        },
+        {
             headers: { 'Authorization': `Bearer ${token}` }
-        })
+        }, )
         .then(response => {
         console.log(response)
         })

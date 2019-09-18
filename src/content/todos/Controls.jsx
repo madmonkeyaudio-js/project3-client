@@ -13,17 +13,19 @@ class Controls extends Component {
             this.props.add(this.state.newItemText)
             let token = localStorage.getItem('mernToken')
                 if (token) {
-                axios.post(`${SERVER_URL}/profile`, {
+                axios.post(`${SERVER_URL}/profile`, 
+                {result: this.state.newItemText},
+                {
                     headers: { 'Authorization': `Bearer ${token}` }    
-                }, {result: this.state.newItemText}
+                }, 
                 )
                 .then(response => {
-                    console.log(response)
+                    // console.log(response)
+                    // console.log(response.data)
+                    this.setState({
+                        newItemText: ''
+                    })
                 })
-                .then(
-                this.setState({ 
-                    newItemText: '' 
-                }))
                 .catch(err => {
                     console.log(err)
                 })
