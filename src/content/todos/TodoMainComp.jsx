@@ -5,7 +5,6 @@ import {Container} from 'reactstrap';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 
-
 class TodoMainComp extends React.Component {
 state = {
   items: []
@@ -41,7 +40,6 @@ render() {
         <Container>
           <TodoForm clear={this.clear} addNewItem={this.addNewItem} holidayName={this.props.holidayName}/>
           <TodoList items={this.state.items} delete={this.delete} markDone={this.markDone}/>
-     
         </Container>
       </div>
     );
