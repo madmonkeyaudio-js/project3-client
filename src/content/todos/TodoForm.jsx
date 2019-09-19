@@ -20,7 +20,7 @@ class TodoForm extends Component {
     render() {
         return (
             <div> 
-                <h3>Add something you'd like to do</h3>
+                <h3>Add something you'd like to do for {this.props.holidayName}</h3>
                 <Form onSubmit={this.handleSubmit} > 
                     <Row>
                         <Col sm="8">

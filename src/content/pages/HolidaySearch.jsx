@@ -119,6 +119,7 @@ import {Redirect} from 'react-router-dom';
         })
         return (
             <div>
+                <h2>Enter custom Holiday or type in the name field to see US holidays</h2>
                  <form onSubmit={this.postForm}>
 
                     <label htmlFor="name">name</label>

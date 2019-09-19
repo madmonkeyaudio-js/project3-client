@@ -39,7 +39,7 @@ render() {
   return (
     <div>
         <Container>
-          <TodoForm clear={this.clear} addNewItem={this.addNewItem}/>
+          <TodoForm clear={this.clear} addNewItem={this.addNewItem} holidayName={this.props.holidayName}/>
           <TodoList items={this.state.items} delete={this.delete} markDone={this.markDone}/>
      
         </Container>

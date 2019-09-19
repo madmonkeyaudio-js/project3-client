@@ -24,7 +24,9 @@ const Content = props => {
         () => <Signup user={props.user} updateUser={props.updateUser} />
       } />
       <Route path="/holidaySearch" component={HolidaySearch} />
-      <Route path="/holidayPlanner" component={HolidayPlanner} />
+      <Route path="/holidayPlanner" render={
+        () => <HolidayPlanner user={props.user} />
+      } />
     </div>
   )
 }
