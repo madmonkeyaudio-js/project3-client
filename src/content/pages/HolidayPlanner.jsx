@@ -9,7 +9,7 @@ class HolidayPlanner extends React.Component {
     state = {
         user: null
       }
-    
+  
     componentDidMount(){
       let token = localStorage.getItem('mernToken')
         axios.get(`${SERVER_URL}/holidayPlanner`, 
@@ -37,6 +37,7 @@ class HolidayPlanner extends React.Component {
             <div key={idx}>
               <div>
                 <TodoMainComp holidayName={holiday.name}/>
+                <hr/>
               </div>
             </div>
           )
@@ -44,8 +45,6 @@ class HolidayPlanner extends React.Component {
       }
         return(
             <div>
-                Holiday Planner
-              
                 {displayHolidays}
             </div>
         )

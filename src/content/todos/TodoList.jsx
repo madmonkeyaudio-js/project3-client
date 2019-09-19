@@ -14,7 +14,6 @@ const TodoList = props => {
     })
     return (
         <div>
-            <h3>My Current List</h3>
             <ListGroup>
                 {displayItems}
             </ListGroup>
