@@ -5,7 +5,8 @@ import SERVER_URL from '../../constants'
 
 class TodoForm extends Component {
     state = {
-        newItemText: ''
+        newItemText: '',
+        addedItem: [], 
     }
 
     handleChange = (e) => {
@@ -17,25 +18,29 @@ class TodoForm extends Component {
     postForm = (e) => {
         e.preventDefault();
         if (this.state.newItemText) {
-            this.props.addNewItem(this.state.newItemText)
             let token = localStorage.getItem('mernToken')
             let text = this.state.newItemText; 
                 axios.post(`${SERVER_URL}/holidayPlanner`, 
                 {
                     item: text, 
-                    holiday: this.props.holidayId
+                    holidayId: this.props.holidayId
                 }, 
                     {
                         headers: { 'Authorization': `Bearer ${token}` }
                     })
                 .then(response => {
                     console.log(response)
+                    this.setState({
+                        addedItem: [...this.state.addedItem, {text: response.data.todoItem}]
+                    })
                 })
                 .catch(err => {
                     console.log(err)
                 })   
             }
         }
+
+       
     
     render() {
         return (
@@ -59,13 +64,14 @@ class TodoForm extends Component {
                             </FormGroup>
                         </Col>
                         <Col sm="2">
-                            <Button color="primary" type="submit" addNewItem={this.props.addNewItem}> Add </Button>
+                            <Button color="primary" type="submit" onClick={this.props.addNewItem}> Add </Button>
                         </Col>
                         <Col sm="2">
                             <Button color="danger" onClick={this.props.clear}> Clear</Button>
                         </Col>
                     </Row>
                 </Form>
+                <h1>{this.state.addedItem.text}</h1>
             </div>
         )
     }

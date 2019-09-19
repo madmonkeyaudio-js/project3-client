@@ -2,8 +2,6 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios';
 import SERVER_URL from '../../constants'
-import HolidayPlanner from './HolidayPlanner';
-
 
 class Profile extends React.Component {
  
@@ -12,6 +10,10 @@ class Profile extends React.Component {
   }
 
 componentDidMount(){
+  this.loadUserData();
+}
+
+loadUserData = () => {
   let token = localStorage.getItem('mernToken')
     axios.get(`${SERVER_URL}/profile`, 
     {
@@ -25,7 +27,23 @@ componentDidMount(){
     .catch(err => {
       console.log(err);
     })
-}
+  }
+
+
+deleteHoliday = (e) => {
+  e.preventDefault();
+  let token = localStorage.getItem('mernToken')
+      axios.delete(`${SERVER_URL}/holidayplanner/${e.target.value}`,
+      {
+          headers: { 'Authorization': `Bearer ${token}` }
+      })
+      .then(response => {
+        this.loadUserData();
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
 
 render(){
   if (!this.props.user) {
@@ -37,8 +55,9 @@ render(){
       return (
         <div key={idx}>
           <div>
-          <h3> {holiday.name}</h3>
-          {holiday.description}
+            <h3> {holiday.name}</h3>
+                {holiday.description}
+            <button value ={holiday._id} onClick={this.deleteHoliday}>Delete</button>
           </div>
         </div>
       )

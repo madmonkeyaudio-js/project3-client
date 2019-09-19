@@ -7,35 +7,46 @@ import TodoMainComp from '../todos/TodoMainComp';
 
 class HolidayPlanner extends React.Component {
     state = {
-        user: null
-      }
-  
+      holidays: [],
+      todos: []
+    }
+
     componentDidMount(){
+        this.getUserHolidays();
+    }
+    
+    getUserHolidays = () => {
       let token = localStorage.getItem('mernToken')
-        axios.get(`${SERVER_URL}/holidayPlanner`, 
-        {
+      axios.get(`${SERVER_URL}/holidayplanner`,
+      {
         headers: { 'Authorization': `Bearer ${token}` }
-        })
-        .then(response => {
-         console.log(response.data)
-         this.setState({
-           user: response.data
-         })
-        })
-        .catch(err => {
-          console.log(err);
-        })
+      })
+      .then(response => {
+        console.log(response)
+        let holidays = response.data.holidays;
+        let todos = response.data.todos;
+        this.setState({
+          holidays: holidays,
+          todos: todos
+        });
+      })
+      .catch(err => {
+        console.log(err)
+      })
     }
     render(){
+      console.log(this.props.user)
       if (!this.props.user) {
         return <Redirect to="/" />
       }
+      
       let displayHolidays = '';
-      if(this.state.user){
-        displayHolidays = this.state.user.holidays.map((holiday, idx) => {
+      if(this.props.user){
+        displayHolidays = (this.state.holidays || []).map((holiday, idx) => {
           return (
             <div key={idx}>
               <div>
+             
                 <TodoMainComp holidayName={holiday.name} holidayId={holiday._id}/>
                 <hr/>
               </div>
