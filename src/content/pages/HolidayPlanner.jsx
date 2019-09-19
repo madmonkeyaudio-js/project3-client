@@ -34,20 +34,26 @@ class HolidayPlanner extends React.Component {
         console.log(err)
       })
     }
+
+    
     render(){
       console.log(this.props.user)
       if (!this.props.user) {
         return <Redirect to="/" />
       }
-      
+     
+
       let displayHolidays = '';
       if(this.props.user){
         displayHolidays = (this.state.holidays || []).map((holiday, idx) => {
+          let todoListItems = this.state.todos.filter(todo => {
+            return todo.holiday === holiday._id
+          })
+          console.log(todoListItems)
           return (
             <div key={idx}>
               <div>
-             
-                <TodoMainComp holidayName={holiday.name} holidayId={holiday._id}/>
+                <TodoMainComp items={todoListItems} holidayName={holiday.name} holidayId={holiday._id}/>
                 <hr/>
               </div>
             </div>

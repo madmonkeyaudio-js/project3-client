@@ -9,14 +9,6 @@ const TodoListItem = props => {
                 <Col xs="9">
                   {props.item.todoItem}
                 </Col>
-                <Col xs="3">
-                   <Badge color="success" className="pointer" onClick={() => props.markDone(props.index)}>
-                       V
-                    </Badge>{' '}
-                    <Badge color="danger" className="pointer" onClick={() => {props.delete(props.index)}}>
-                        X
-                    </Badge>
-                </Col>
             </Row>   
         </ListGroupItem>
     )

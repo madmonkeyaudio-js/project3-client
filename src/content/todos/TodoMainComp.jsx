@@ -16,30 +16,13 @@ addNewItem = (newItemText) => {
   })
 }
 
-clear = () => {
-  this.setState({
-    items: []
-  })
-}
-
-markDone = (indexToChange) => {
-    let currentItems = [...this.state.items]
-    currentItems[indexToChange].finished = !currentItems[indexToChange].finished
-    this.setState({ items: currentItems })
-}
-
-delete = (indexToDelete) => {
-  let currentItems = [...this.state.items]
-  currentItems.splice(indexToDelete, 1)
-  this.setState({ items: currentItems })
-}
 
 render() {
   return (
     <div>
         <Container>
           <TodoForm clear={this.clear} addNewItem={this.addNewItem} holidayName={this.props.holidayName} holidayId={this.props.holidayId}/>
-          <TodoList items={this.state.items} delete={this.delete} markDone={this.markDone}/>
+          <TodoList  items={this.props.items} delete={this.delete} markDone={this.markDone}/>
         </Container>
       </div>
     );
