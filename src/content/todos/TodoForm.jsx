@@ -20,11 +20,17 @@ class TodoForm extends Component {
             this.props.addNewItem(this.state.newItemText)
             let token = localStorage.getItem('mernToken')
             let text = this.state.newItemText; 
-                axios.post(`${SERVER_URL}/holidayPlanner`, text, 
+                axios.post(`${SERVER_URL}/holidayPlanner`, 
+                {
+                    item: text, 
+                    holiday: this.props.holidayId
+                }, 
                     {
                         headers: { 'Authorization': `Bearer ${token}` }
                     })
-                .then()
+                .then(response => {
+                    console.log(response)
+                })
                 .catch(err => {
                     console.log(err)
                 })   
@@ -44,6 +50,11 @@ class TodoForm extends Component {
                                         placeholder="What would you like to add?" 
                                         value={this.state.newItemText}
                                         onChange={this.handleChange}/>
+
+                                <Input type="hidden"
+                                       value={this.props.holidayId} />
+                                <Input type="hidden"
+                                       value={this.props.holidayName} />
                                        
                             </FormGroup>
                         </Col>
