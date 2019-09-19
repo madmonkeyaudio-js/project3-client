@@ -4,7 +4,7 @@ import SERVER_URL from '../../constants';
 import {Redirect} from 'react-router-dom';
 
 
- class HolidayPlan extends Component {
+ class HolidaySearch extends Component {
    
     state = {
         results: [],
@@ -29,7 +29,7 @@ import {Redirect} from 'react-router-dom';
     }
  
     apiResponseData = (token) => {
-        axios.get(`${SERVER_URL}/holidayPlan`, 
+        axios.get(`${SERVER_URL}/HolidaySearch`, 
         {
         headers: { 'Authorization': `Bearer ${token}` }
         })
@@ -85,7 +85,7 @@ import {Redirect} from 'react-router-dom';
             name: this.state.name
         }
     if (token) {
-        axios.post(`${SERVER_URL}/holidayPlan`, holidayData,
+        axios.post(`${SERVER_URL}/HolidaySearch`, holidayData,
         {
             headers: { 'Authorization': `Bearer ${token}` }
         })
@@ -144,4 +144,4 @@ import {Redirect} from 'react-router-dom';
     }
 }
 
-export default HolidayPlan
+export default HolidaySearch

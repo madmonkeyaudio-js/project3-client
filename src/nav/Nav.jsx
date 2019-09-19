@@ -23,8 +23,9 @@ class Nav extends Component {
               <Link to="/profile">Profile</Link>
             </li>
             <li>
-              <Link to="/holidayPlan">Holiday Planner</Link>
+              <Link to="/holidaySearch">Search Holidays</Link>
             </li>
+            
             <li>
               <a href="/" onClick={this.handleLogout}>Logout</a>
             </li>  

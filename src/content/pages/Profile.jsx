@@ -18,7 +18,6 @@ componentDidMount(){
     headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(response => {
-      console.log("hjihihihi:,",response.data)
      this.setState({
        user: response.data
      })
@@ -26,32 +25,32 @@ componentDidMount(){
     .catch(err => {
       console.log(err);
     })
-
 }
 
 render(){
   if (!this.props.user) {
     return <Redirect to="/" />
   }
-
   let displayResults = '';
   if(this.state.user){
     displayResults = this.state.user.holidays.map((holiday) => {
       return (
         <li>
-          {holiday.name}
+          <div>
+          <h3> {holiday.name}</h3>
+          {holiday.description}
+          </div>
         </li>
       )
     })
   }
-   
+
     return (
       <div>
         <h2>{this.props.user.firstname}'s Profile</h2>
         <p>{this.props.user.firstname}</p>
         <TodoMainComp />
         <div>{displayResults}</div>
-       
       </div>
     )
   }
