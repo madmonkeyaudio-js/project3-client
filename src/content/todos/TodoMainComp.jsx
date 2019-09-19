@@ -11,7 +11,7 @@ state = {
   items: []
 }
 
-add = (newItemText) => {
+addNewItem = (newItemText) => {
   this.setState({
     items: [...this.state.items, { text: newItemText, finished: false}]
   })
@@ -39,7 +39,7 @@ render() {
   return (
     <div>
         <Container>
-          <TodoForm clear={this.clear} add={this.add}/>
+          <TodoForm clear={this.clear} addNewItem={this.addNewItem}/>
           <TodoList items={this.state.items} delete={this.delete} markDone={this.markDone}/>
      
         </Container>

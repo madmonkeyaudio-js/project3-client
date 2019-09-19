@@ -10,28 +10,13 @@ class TodoForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         if (this.state.newItemText) {
-            this.props.add(this.state.newItemText)
-            let token = localStorage.getItem('mernToken')
-                if (token) {
-                axios.post(`${SERVER_URL}/profile`, 
-                {result: this.state.newItemText},
-                {
-                    headers: { 'Authorization': `Bearer ${token}` }    
-                }, 
-                )
-                .then(response => {
-                    // console.log(response)
-                    // console.log(response.data)
+            this.props.addNewItem(this.state.newItemText)
                     this.setState({
                         newItemText: ''
-                    })
-                })
-                .catch(err => {
-                    console.log(err)
                 })
             }
         }
-    }
+    
     render() {
         return (
             <div> 
@@ -51,7 +36,7 @@ class TodoForm extends Component {
                             </FormGroup>
                         </Col>
                         <Col sm="2">
-                            <Button color="primary" type="submit" onClick={this.props.add}> Add </Button>
+                            <Button color="primary" type="submit" addNewItem={this.props.addNewItem}> Add </Button>
                         </Col>
                         <Col sm="2">
                             <Button color="danger" onClick={this.props.clear}> Clear</Button>
@@ -62,5 +47,6 @@ class TodoForm extends Component {
         )
     }
 }
+
 
 export default TodoForm;

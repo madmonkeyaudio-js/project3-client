@@ -2,12 +2,13 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 
-// Custom componentd
+// Custom components
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 import Signup from './pages/Signup'
 import HolidaySearch from './pages/HolidaySearch'
+import HolidayPlanner from './pages/HolidayPlanner'
 
 const Content = props => {
   return (
@@ -23,6 +24,7 @@ const Content = props => {
         () => <Signup user={props.user} updateUser={props.updateUser} />
       } />
       <Route path="/holidaySearch" component={HolidaySearch} />
+      <Route path="/holidayPlanner" component={HolidayPlanner} />
     </div>
   )
 }

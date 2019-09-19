@@ -1,8 +1,8 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import TodoMainComp from '../todos/TodoMainComp';
 import axios from 'axios';
 import SERVER_URL from '../../constants'
+import HolidayPlanner from './HolidayPlanner';
 
 
 class Profile extends React.Component {
@@ -31,16 +31,16 @@ render(){
   if (!this.props.user) {
     return <Redirect to="/" />
   }
-  let displayResults = '';
+  let displayHolidays = '';
   if(this.state.user){
-    displayResults = this.state.user.holidays.map((holiday) => {
+    displayHolidays = this.state.user.holidays.map((holiday, idx) => {
       return (
-        <li>
+        <div key={idx}>
           <div>
           <h3> {holiday.name}</h3>
           {holiday.description}
           </div>
-        </li>
+        </div>
       )
     })
   }
@@ -48,9 +48,7 @@ render(){
     return (
       <div>
         <h2>{this.props.user.firstname}'s Profile</h2>
-        <p>{this.props.user.firstname}</p>
-        <TodoMainComp />
-        <div>{displayResults}</div>
+        <div>{displayHolidays}</div>
       </div>
     )
   }

@@ -113,7 +113,7 @@ import {Redirect} from 'react-router-dom';
                 <li key={idx}>
                     {result.name}
                     {result.country}
-                    <button value={idx} onClick={this.handleHolidaySelection}>XOXO</button>
+                    <button value={idx} onClick={this.handleHolidaySelection}>Select</button>
                 </li>
             )
         })
@@ -135,7 +135,7 @@ import {Redirect} from 'react-router-dom';
              
                 <hr/>
                     <div>
-                        <h2>Display Holidays</h2>
+                        <h2>Search Results</h2>
                     </div>
                 
                 <div>{displayResults}</div>
