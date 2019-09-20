@@ -117,9 +117,9 @@ import {Button, Toast, ToastHeader, ToastBody} from 'reactstrap';
 
       let alert = this.state.alert;
       if (this.state.alert) {
-            alert = 'Hi there friend';
+            alert = 'Add todos in your holiday planner';
       } else {
-          alert = 'Search for something';
+          alert = 'Type in the name field to see US and World holidays or enter name of your choice';
       }
 
         let displayResults = this.state.filteredResults.map((result, idx) => {
@@ -149,12 +149,12 @@ import {Button, Toast, ToastHeader, ToastBody} from 'reactstrap';
         })
         return (
             <div>
-                {alert}
-                {/* {this.state.checkout}
-                <h4>Enter custom Holiday or type in the name field to see US and World holidays</h4> */}
+                    
+                <h5> {alert}</h5>
+                <h6>All fields are required!</h6>
                  <form onSubmit={this.postForm}>
 
-                    <label htmlFor="name">name</label>
+                    <label htmlFor="name">Holiday name</label>
                     <input id="name" value={this.state.name} type="text" placeholder="name..." name="name" onChange={this.search}/>
 
                     <label htmlFor="date">date</label>
