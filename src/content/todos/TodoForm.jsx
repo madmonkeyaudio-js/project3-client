@@ -45,7 +45,7 @@ class TodoForm extends Component {
     render() {
         return (
             <div> 
-                <h3>Add something you'd like to do for {this.props.holidayName}</h3>
+                <h3>What would you like to do for {this.props.holidayName}?</h3>
                 <Form onSubmit={this.postForm} > 
                     <Row>
                         <Col sm="8">
@@ -64,11 +64,9 @@ class TodoForm extends Component {
                             </FormGroup>
                         </Col>
                         <Col sm="2">
-                            <Button color="primary" type="submit" onClick={this.props.addNewItem}> Add </Button>
+                            <Button outline color="primary" type="submit" onClick={this.props.addNewItem}> Add </Button>
                         </Col>
-                        <Col sm="2">
-                            <Button color="danger" onClick={this.props.clear}> Clear</Button>
-                        </Col>
+                       
                     </Row>
                 </Form>
                 <h1>{this.state.addedItem.text}</h1>

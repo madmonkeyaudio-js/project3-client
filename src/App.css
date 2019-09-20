@@ -45,3 +45,8 @@ input {
   width: 150px;
 }
 
+.searchContainer {
+  display: flex;
+  justify-content: space-around;
+}
+

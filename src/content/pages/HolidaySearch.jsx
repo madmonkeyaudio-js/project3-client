@@ -113,7 +113,7 @@ import {Button, Toast, ToastHeader, ToastBody} from 'reactstrap';
         let displayResults = this.state.filteredResults.map((result, idx) => {
             return (
                 <div className="p-3 bg-info my-2 rounded">
-                    <div>
+                    <div className="searchContainer">
                         <div>
                             <Toast key={idx}>
                                 <ToastHeader>
@@ -126,9 +126,9 @@ import {Button, Toast, ToastHeader, ToastBody} from 'reactstrap';
                         </div>
                         <div>
                             <Toast>
-                                <ToastHeader>
-                                    <Button value={idx} onClick={this.handleHolidaySelection}>Select</Button>
-                                </ToastHeader>
+                                <ToastBody>
+                                    <Button color="success" value={idx} onClick={this.handleHolidaySelection}>Select</Button>
+                                </ToastBody>
                             </Toast>
                         </div>
                     </div>

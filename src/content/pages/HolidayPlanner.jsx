@@ -62,6 +62,7 @@ class HolidayPlanner extends React.Component {
       }
         return(
             <div>
+              <h3>Add a todo to your holidays</h3>
                 {displayHolidays}
             </div>
         )

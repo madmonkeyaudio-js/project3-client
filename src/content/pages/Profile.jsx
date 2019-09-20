@@ -21,6 +21,7 @@ loadUserData = () => {
     headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(response => {
+      console.log(response)
      this.setState({
        user: response.data
      })
@@ -71,11 +72,9 @@ render(){
 
     return (
       <div>
-       
-        
             <h2>{this.props.user.firstname}'s Profile</h2>
+            <img src="this.props.user.profileUrl" alt="profile pic"/>
             <div>{displayHolidays}</div>
-        
       </div>
     )
   }
