@@ -73,6 +73,7 @@ render(){
     return (
       <div>
             <h2>{this.props.user.firstname}'s Profile</h2>
+            <h3>{this.props.user.email}</h3>
             <img src="this.props.user.profileUrl" alt="profile pic"/>
             <div>{displayHolidays}</div>
       </div>

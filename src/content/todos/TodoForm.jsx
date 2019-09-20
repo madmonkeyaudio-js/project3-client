@@ -18,6 +18,7 @@ class TodoForm extends Component {
     postForm = (e) => {
         e.preventDefault();
         if (this.state.newItemText) {
+           
             let token = localStorage.getItem('mernToken')
             let text = this.state.newItemText; 
                 axios.post(`${SERVER_URL}/holidayPlanner`, 
@@ -33,6 +34,7 @@ class TodoForm extends Component {
                     this.setState({
                         addedItem: [...this.state.addedItem, {text: response.data.todoItem}]
                     })
+                   this.props.getUserHolidays();
                 })
                 .catch(err => {
                     console.log(err)
@@ -45,10 +47,10 @@ class TodoForm extends Component {
     render() {
         return (
             <div> 
-                <h3>What would you like to do for {this.props.holidayName}?</h3>
+                <h5>What would you like to do for {this.props.holidayName}?</h5>
                 <Form onSubmit={this.postForm} > 
                     <Row>
-                        <Col sm="8">
+                        <Col sm="10">
                             <FormGroup>
                                 <Input  type="text" 
                                         name="newItemText"

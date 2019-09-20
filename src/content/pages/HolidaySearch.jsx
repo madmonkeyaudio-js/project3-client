@@ -14,7 +14,8 @@ import {Button, Toast, ToastHeader, ToastBody} from 'reactstrap';
         date: '', 
         place: '', 
         selectedHoliday: '',
-        redirect: false
+        redirect: false,
+        alert: false
     }
 
     componentDidMount(){
@@ -93,7 +94,10 @@ import {Button, Toast, ToastHeader, ToastBody} from 'reactstrap';
         })
         
         .then(response => {
-        console.log(response)
+            console.log(response)
+            this.setState({
+                alert: true
+            })
         })
         .catch(err => {
             console.log('Error with token', err)
@@ -110,6 +114,14 @@ import {Button, Toast, ToastHeader, ToastBody} from 'reactstrap';
                 <Redirect to="/login"/>
             )
         }
+
+      let alert = this.state.alert;
+      if (this.state.alert) {
+            alert = 'Hi there friend';
+      } else {
+          alert = 'Search for something';
+      }
+
         let displayResults = this.state.filteredResults.map((result, idx) => {
             return (
                 <div className="p-3 bg-info my-2 rounded">
@@ -133,12 +145,13 @@ import {Button, Toast, ToastHeader, ToastBody} from 'reactstrap';
                         </div>
                     </div>
               </div>
-               
             )
         })
         return (
             <div>
-                <h2>Enter custom Holiday or type in the name field to see US holidays</h2>
+                {alert}
+                {/* {this.state.checkout}
+                <h4>Enter custom Holiday or type in the name field to see US and World holidays</h4> */}
                  <form onSubmit={this.postForm}>
 
                     <label htmlFor="name">name</label>
@@ -155,7 +168,7 @@ import {Button, Toast, ToastHeader, ToastBody} from 'reactstrap';
              
                 <hr/>
                     <div>
-                        <h2>Search Results</h2>
+                        <h5>Search Results</h5>
                     </div>
                 
                 <div>{displayResults}</div>

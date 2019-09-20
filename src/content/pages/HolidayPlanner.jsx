@@ -53,7 +53,7 @@ class HolidayPlanner extends React.Component {
           return (
             <div key={idx}>
               <div>
-                <TodoMainComp items={todoListItems} holidayName={holiday.name} holidayId={holiday._id}/>
+                <TodoMainComp getUserHolidays={this.getUserHolidays} items={todoListItems} holidayName={holiday.name} holidayId={holiday._id}/>
                 <hr/>
               </div>
             </div>
