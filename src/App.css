@@ -51,12 +51,13 @@ input {
 }
 
 h5 {
-  padding: 10px;
+  padding: 5px;
 }
 .profile-info {
   display: flex;
   justify-content: space-evenly;
   padding: 20px;
+  max-height: 40vh;
 }
 .home-container {
  text-align: center;

@@ -2,7 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios';
 import SERVER_URL from '../../constants'
-import {Card, CardText, CardBody,CardTitle, Button} from 'reactstrap';
+import {Card, CardText, CardBody,CardTitle, Alert, Button} from 'reactstrap';
 
 class Profile extends React.Component {
  
@@ -77,8 +77,9 @@ render(){
             <img src={this.props.user.profileUrl} alt="profile pic" />
           </div>
           <div>
-            <CardTitle>{this.props.user.firstname}'s Profile</CardTitle>
-            <CardText>{this.props.user.email}</CardText>
+            <Alert color="success">
+              Hi {this.props.user.firstname}! Checkout your holidays below.
+            </Alert>
           </div>
         </div>
             <div>{displayHolidays}</div>

@@ -3,6 +3,7 @@ import axios from 'axios'
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import SERVER_URL from '../../constants'
+import { Form, FormGroup, Input, Label} from 'reactstrap';
 
 class Login extends React.Component {
   state = {
@@ -35,17 +36,17 @@ class Login extends React.Component {
       <div>
         <h2>Login</h2>
         <span className="red">{this.state.message}</span>
-        <form onSubmit={this.handleSubmit}>
-            <div>
-              <label>Email:</label>
-              <input type="email" name="email" onChange={(e) => this.setState({ email: e.target.value, message: '' })} />
-            </div>
-            <div>
-              <label>Password:</label>
-              <input type="password" name="password" onChange={(e) => this.setState({ password: e.target.value, message: '' })} />
-            </div>
+        <Form onSubmit={this.handleSubmit}>
+            <FormGroup>
+              <Label>Email:</Label>
+              <Input type="email" name="email" onChange={(e) => this.setState({ email: e.target.value, message: '' })} />
+            </FormGroup>
+            <FormGroup>
+              <Label>Password:</Label>
+              <Input type="password" name="password" onChange={(e) => this.setState({ password: e.target.value, message: '' })} />
+            </FormGroup>
             <button type="submit">Beam Me Up!</button>
-          </form>
+          </Form>
       </div>
     )
   }
