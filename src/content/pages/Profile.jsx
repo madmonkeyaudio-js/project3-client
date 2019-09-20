@@ -2,6 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios';
 import SERVER_URL from '../../constants'
+import {Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Button} from 'reactstrap';
 
 class Profile extends React.Component {
  
@@ -55,9 +56,11 @@ render(){
       return (
         <div key={idx}>
           <div>
-            <h3> {holiday.name}</h3>
-                {holiday.description}
-            <button value ={holiday._id} onClick={this.deleteHoliday}>Delete</button>
+            <Card><CardBody>
+            <CardTitle> {holiday.name}</CardTitle>
+                <CardText>{holiday.description}</CardText>
+              <button value ={holiday._id} onClick={this.deleteHoliday}>Delete</button>
+              </CardBody> </Card>
           </div>
         </div>
       )
@@ -66,8 +69,11 @@ render(){
 
     return (
       <div>
-        <h2>{this.props.user.firstname}'s Profile</h2>
-        <div>{displayHolidays}</div>
+       
+        
+            <h2>{this.props.user.firstname}'s Profile</h2>
+            <div>{displayHolidays}</div>
+        
       </div>
     )
   }
