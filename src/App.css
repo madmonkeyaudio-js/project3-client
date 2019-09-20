@@ -53,3 +53,16 @@ input {
 h5 {
   padding: 10px;
 }
+.profile-info {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+.home-container {
+ text-align: center;
+ position: absolute;
+}
+
+.profile-pic {
+  max-width: 35%;
+}
