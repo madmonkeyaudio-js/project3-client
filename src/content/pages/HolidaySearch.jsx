@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import SERVER_URL from '../../constants';
 import {Redirect} from 'react-router-dom';
+import {Button, Toast, ToastHeader, ToastBody} from 'reactstrap';
 
 
  class HolidaySearch extends Component {
@@ -34,6 +35,7 @@ import {Redirect} from 'react-router-dom';
         headers: { 'Authorization': `Bearer ${token}` }
         })
         .then(response => {
+            console.log(response.data)
             this.setState({
                 results: response.data.response.holidays
             })
@@ -110,11 +112,28 @@ import {Redirect} from 'react-router-dom';
         }
         let displayResults = this.state.filteredResults.map((result, idx) => {
             return (
-                <li key={idx}>
-                    {result.name}
-                    {result.country}
-                    <button value={idx} onClick={this.handleHolidaySelection}>Select</button>
-                </li>
+                <div className="p-3 bg-info my-2 rounded">
+                    <div>
+                        <div>
+                            <Toast key={idx}>
+                                <ToastHeader>
+                                    {result.name}
+                                </ToastHeader>
+                                <ToastBody >
+                                    {result.description}    
+                                </ToastBody>
+                            </Toast>
+                        </div>
+                        <div>
+                            <Toast>
+                                <ToastHeader>
+                                    <Button value={idx} onClick={this.handleHolidaySelection}>Select</Button>
+                                </ToastHeader>
+                            </Toast>
+                        </div>
+                    </div>
+              </div>
+               
             )
         })
         return (

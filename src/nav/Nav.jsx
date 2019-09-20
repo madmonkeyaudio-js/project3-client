@@ -49,7 +49,7 @@ class Nav extends Component {
     }
 
     return (
-      <div className="App-header">
+      <div >
         <nav>
           <ul>
             <li>

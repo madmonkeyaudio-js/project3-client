@@ -56,11 +56,13 @@ render(){
       return (
         <div key={idx}>
           <div>
-            <Card><CardBody>
-            <CardTitle> {holiday.name}</CardTitle>
+            <Card>
+              <CardBody>
+                <CardTitle> {holiday.name}</CardTitle>
                 <CardText>{holiday.description}</CardText>
-              <button value ={holiday._id} onClick={this.deleteHoliday}>Delete</button>
-              </CardBody> </Card>
+                <Button color="info" value ={holiday._id} onClick={this.deleteHoliday}>Delete</Button>
+              </CardBody> 
+            </Card>
           </div>
         </div>
       )

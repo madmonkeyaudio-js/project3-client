@@ -2,7 +2,7 @@ import React from 'react'
 
 const Header = props => {
   return (
-    <header >
+    <header className="App-header">
       
     </header>
   )
